@@ -1,27 +1,21 @@
+import java.util.*;
+
 class Solution {
     public int maxProfit(int[] prices) {
-        if (prices == null || prices.length == 0) {
-            return 0; // No profit possible
-        }
-
-        int minPrice = Integer.MAX_VALUE; // Initialize min price to maximum
-        int maxProfit = 0; // Initialize max profit to zero
+        int min = Integer.MAX_VALUE; // Corrected from Integer.MAX.Value
+        int maxProfit = 0; // Corrected from mixp to maxProfit
 
         for (int price : prices) {
-            // Update minPrice if the current price is lower
-            if (price < minPrice) {
-                minPrice = price;
+            // Update min if the current price is lower
+            if (min > price) {
+                min = price;
             } 
-            // Calculate profit if selling at current price
-            else {
-                int profit = price - minPrice;
-                // Update maxProfit if the current profit is higher
-                if (profit > maxProfit) {
-                    maxProfit = profit;
-                }
+            // Calculate profit if the current price is higher than min
+            else if (price - min > maxProfit) { // Fixed syntax here
+                maxProfit = price - min; // Corrected from maxp to maxProfit
             }
         }
-
+        
         return maxProfit; // Return the maximum profit found
     }
 
